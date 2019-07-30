@@ -18,7 +18,7 @@
 # DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-FROM nvidia/cuda:9.0-cudnn7-runtime-ubuntu16.04
+FROM ufoym/deepo:pytorch-py36
 
 LABEL maintainer='Microsoft NNI Team<nni@microsoft.com>'
 
@@ -38,7 +38,6 @@ RUN DEBIAN_FRONTEND=noninteractive && \
     openssh-client \
     openssh-server \
     lsof \
-    python3.5 \
     python3-dev \
     python3-pip \
     python3-tk \
@@ -46,43 +45,14 @@ RUN DEBIAN_FRONTEND=noninteractive && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-#
-# update pip
-#
 RUN python3 -m pip install --upgrade pip
 
-# numpy 1.14.3  scipy 1.1.0
-RUN python3 -m pip --no-cache-dir install \
-    numpy==1.14.3 scipy==1.1.0
-
-#
-# Tensorflow 1.10.0
-#
-RUN python3 -m pip --no-cache-dir install tensorflow-gpu==1.10.0
-
-#
-# Keras 2.1.6
-#
-RUN python3 -m pip --no-cache-dir install Keras==2.1.6
-
-#
-# PyTorch (latest)
-#
-RUN python3 -m pip --no-cache-dir install torch torchvision
-
-#
-# sklearn 0.20.0
-#
+RUN python3 -m pip --no-cache-dir install numpy scipy
+RUN python3 -m pip --no-cache-dir install tensorflow-gpu tensorboard
+RUN python3 -m pip --no-cache-dir install Keras
+RUN python3 -m pip --no-cache-dir install tensorboardx
 RUN python3 -m pip --no-cache-dir install scikit-learn
-
-#
-# pandas==0.23.4 lightgbm==2.2.2
-#
-RUN python3 -m pip --no-cache-dir install pandas==0.23.4 lightgbm==2.2.2
-
-#
-# Install NNI
-#
+RUN python3 -m pip --no-cache-dir install pandas lightgbm
 RUN python3 -m pip --no-cache-dir install nni
 
 ENV PATH=/usr/local/nvidia/bin:/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/root/.local/bin:/usr/bin:/bin:/sbin
