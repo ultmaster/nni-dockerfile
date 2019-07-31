@@ -22,6 +22,7 @@ FROM ufoym/deepo:pytorch-py36
 
 LABEL maintainer='Microsoft NNI Team<nni@microsoft.com>'
 
+RUN apt install --assume-yes nfs-common cifs-utils sshpass wget git
 RUN python3 -m pip install --upgrade pip
 
 RUN python3 -m pip --no-cache-dir install numpy scipy
