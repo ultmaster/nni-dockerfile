@@ -22,29 +22,6 @@ FROM ufoym/deepo:pytorch-py36
 
 LABEL maintainer='Microsoft NNI Team<nni@microsoft.com>'
 
-RUN DEBIAN_FRONTEND=noninteractive && \
-    apt-get -y update && \
-    apt-get -y install sudo \
-    apt-utils \
-    git \
-    curl \
-    vim \
-    unzip \
-    wget \
-    build-essential \
-    cmake \
-    libopenblas-dev \
-    automake \
-    openssh-client \
-    openssh-server \
-    lsof \
-    python3-dev \
-    python3-pip \
-    python3-tk \
-    libcupti-dev && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
-
 RUN python3 -m pip install --upgrade pip
 
 RUN python3 -m pip --no-cache-dir install numpy scipy
