@@ -31,6 +31,7 @@ RUN python3 -m pip --no-cache-dir install Keras
 RUN python3 -m pip --no-cache-dir install tensorboardx
 RUN python3 -m pip --no-cache-dir install scikit-learn
 RUN python3 -m pip --no-cache-dir install pandas lightgbm
+RUN python3 -m pip --no-cache-dir install -U torch torchvision
 RUN python3 -m pip --no-cache-dir install nni
 
 ENV PATH=/usr/local/nvidia/bin:/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/root/.local/bin:/usr/bin:/bin:/sbin
