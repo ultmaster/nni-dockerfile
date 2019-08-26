@@ -1,4 +1,4 @@
-FROM ufoym/deepo:pytorch-py36
+FROM nvidia/cuda:9.0-cudnn7-runtime-ubuntu16.04
 
 RUN DEBIAN_FRONTEND=noninteractive && \
     apt-get -y update && \
